@@ -1,5 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+const { makeBadge, ValidationError } = require('badge-maker');
 
 const licenseList = [
     'Academic Free License: AFL 2.1 and AFL 3.0',
@@ -115,38 +116,79 @@ inquirer
         },
         {
             type: "input",
-            name: "questions",
-            message: "How do you test your software?(Please use N/A if non applicable)"
+            name: "github",
+            message: "what is your github username?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "what is your email address?"
         },
         {
             type: "list",
             name: "license",
             message: "please select a license",
             choices: licenseList
+        },
+        {
+            type: "list",
+            name: "color",
+            message: "what color would you like your license badge to be?",
+            choices: ["green", "blue", "pink", "purple", "red", "orange", "yellow"]
         }
             
 
 
     ]).then((response) => {
         console.log("I am creating your README.md file. Please make sure to read over your file for any grammatical errors that may have happened between the template and your answers before using.");
+        
+        const badge = makeBadge({
+            label: "License",
+            message: `${response.license}`,
+            color: `${response.color}`
+        });
+        
         const readMeTemplate =
-            `#${response.title} 
+        `# ${response.title}
+
+        [![License](${badge})](LICENSE.md)
+
+        ## Table of Contents
+        - [Description](#description)
+        - [Installation](#installation)
+        - [Usage](#usage)
+        - [License](#license)
+        - [Contributing](#contributing)
+        - [Resources](#resources)
+        - [Tests](#tests)
+        - [Questions](#questions)
+
         ## Description
-        Hi! My name is ${response.name}, and this is my ${response.title} application. This application was designed to ${response.description}.
-        I created it ${response.purpose}, and I used ${response.languages} to bring ${response.title} to life!
-        ## Installation 
+        Hi! My name is ${response.name}, and this is my ${response.title} application. This application was designed to ${response.description}. I created it ${response.purpose}, and I used ${response.languages} to bring ${response.title} to life!
+        
+        ## Installation
         ${response.installation}
+        
         ## Usage
-        To use this application, install anything nevessary from the installation section, then click the link below to be redirected to the app. 
-        From there, you can expect to see ${response.visual}. To navigate, you may ${response.navigation}.
+        To use this application, install anything necessary from the installation section, then click the link below to be redirected to the app. From there, you can expect to see ${response.visual}. To navigate, you may ${response.navigation}.
+        
         ## License
         ${response.license}
+        
         ## Contributing
         ${response.contributors}
+        
+        ## Resources
         ${response.resources}
+        
         ## Tests
         ${response.test}
-        ## Questions 
-        `
+        
+        ## Questions
+        For any questions, you may contact me at 
+        [GitHub](https://github.com/${response.github}),
+        or [Email](mailto:${response.email})`
+
+        
         fs.writeFile('README.md', readMeTemplate, (err) => err ? console.log(err) : console.log("success"))
     });
