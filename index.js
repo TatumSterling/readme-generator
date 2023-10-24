@@ -26,8 +26,8 @@ inquirer
         },
         {
             type: "input",
-            name: "summary",
-            message: "give a short summary of what your application does"
+            name: "purpose",
+            message: "why did you create this application?"
         },
         {
             type: "input",
@@ -66,5 +66,21 @@ inquirer
         },
 
     ]).then((response) => {
-        console.log(response);
+        console.log("I am creating your README.md file. Please make sure to read over your file for any grammatical errors that may have happened between the template and your answers before using.");
+        const readMeTemplate = `#${response.title} 
+        ## Description
+        Hi! My name is ${response.name}, and this is my ${response.title} application. This application was designed to ${response.description}.
+        I created it ${response.purpose}, and I used ${response.languages} to bring ${response.title} to life!
+        
+        `
+        fs.writeFile('README.md', readMeTemplate,(err) => err ? console.log(err) : console.log("success"))
     });
+
+    // function createReadMe () {
+    //     `#${response.title} 
+    //     ## Description
+    //     Hi! My name is ${response.name}, and this is my ${response.title} application. This application was designed to ${response.description}.
+    //     I created it ${response.purpose}, and I used ${response.languages} to bring ${response.title} to life!
+        
+    //     `
+    // }
