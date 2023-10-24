@@ -134,7 +134,7 @@ inquirer
             type: "list",
             name: "color",
             message: "what color would you like your license badge to be?",
-            choices: ["green", "blue", "pink", "purple", "red", "orange", "yellow"]
+            choices: ["green", "blue", "purple", "red", "orange", "yellow"]
         }
             
 
@@ -151,44 +151,44 @@ inquirer
         const readMeTemplate =
         `# ${response.title}
 
-        [![License](${badge})](LICENSE.md)
+[![License](${badge})](LICENSE.md)
 
-        ## Table of Contents
-        - [Description](#description)
-        - [Installation](#installation)
-        - [Usage](#usage)
-        - [License](#license)
-        - [Contributing](#contributing)
-        - [Resources](#resources)
-        - [Tests](#tests)
-        - [Questions](#questions)
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Resources](#resources)
+- [Tests](#tests)
+- [Questions](#questions)
 
-        ## Description
-        Hi! My name is ${response.name}, and this is my ${response.title} application. This application was designed to ${response.description}. I created it ${response.purpose}, and I used ${response.languages} to bring ${response.title} to life!
+## Description
+Hi! My name is ${response.name}, and this is my ${response.title} application. This application was designed to ${response.description}. I created it ${response.purpose}, and I used ${response.languages} to bring ${response.title} to life!
         
-        ## Installation
-        ${response.installation}
+## Installation
+${response.installation}
         
-        ## Usage
-        To use this application, install anything necessary from the installation section, then click the link below to be redirected to the app. From there, you can expect to see ${response.visual}. To navigate, you may ${response.navigation}.
+## Usage
+To use this application, install anything necessary from the installation section, then click the link below to be redirected to the app. From there, you can expect to see ${response.visual}. To navigate, you may ${response.navigation}.
         
-        ## License
-        ${response.license}
+## License
+${response.license}
         
-        ## Contributing
-        ${response.contributors}
+## Contributing
+${response.contributors}
         
-        ## Resources
-        ${response.resources}
+## Resources
+${response.resources}
         
-        ## Tests
-        ${response.test}
+## Tests
+${response.test}
         
-        ## Questions
-        For any questions, you may contact me at 
-        [GitHub](https://github.com/${response.github}),
-        or [Email](mailto:${response.email})`
+## Questions
+For any questions, you may contact me at 
+[GitHub](https://github.com/${response.github}),
+or [Email](mailto:${response.email})`
 
-        
+
         fs.writeFile('README.md', readMeTemplate, (err) => err ? console.log(err) : console.log("success"))
     });
