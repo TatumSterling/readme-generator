@@ -20,6 +20,8 @@ this application uses node.js
         
 ## Usage
 To use this application, install anything necessary from the installation section, then click the link below to be redirected to the app. From there, you can expect to see a series of questions once opened and run in the terminal about their application. To navigate, you may answer the questions provided and click on the file created by application.
+
+![walkthrough](walkthrough/readme-generator-walkthrough.webm)
         
 ## License
 ISC License
